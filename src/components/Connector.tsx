@@ -14,7 +14,7 @@ import { Account } from 'components';
 import wallet from '@fortawesome/fontawesome-free/svgs/solid/wallet.svg';
 
 const Connector = () => {
-  const { active, activate, account, connector, library, chainId } = useWeb3React();
+  const { active, activate, account, connector, library, chainId, deactivate } = useWeb3React();
   const { setActivatingConnector } = useAccount();
 
   const [balance, setBalance] = useState<BigNumber | undefined>();
@@ -46,7 +46,7 @@ const Connector = () => {
   return (
     <React.Fragment>
       {active && account ? (
-        <Account address={account} balance={balance} />
+        <Account address={account} balance={balance} disconnect={deactivate} />
       ) : (
         <Button
           variant="primary"
